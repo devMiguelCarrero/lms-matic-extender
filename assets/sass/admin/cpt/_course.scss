@@ -1,0 +1,34 @@
+.lesson-selector {
+
+    display: flex;
+    flex-direction: row;
+    min-height: 450px;
+
+    &__column {
+
+        width: 50%;
+        flex: 1;
+        padding-right: .5rem;
+        padding-left: .5rem;
+
+        &--lessons {
+
+        }
+
+        &--library {
+
+        }
+    }
+    
+
+    
+
+    &__title {
+
+    }
+
+    &__content {
+
+    }
+
+}
