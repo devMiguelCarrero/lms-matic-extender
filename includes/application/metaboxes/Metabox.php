@@ -76,19 +76,6 @@
 
 		}
 
-		public function factoryCPTGrouper() {
-
-			global $post;
-
-			// Nonce field to validate form request came from current site
-        	wp_nonce_field( LMSCX_DOMAIN , 'nonce-'.$this->id );
-
-			$post_meta = get_post_meta( $post->ID , $this->id , true );
-			$options = lmscx_CPTHelper::instance()->getAllCPTById( $this->frontend->options['cpt'] , $this->frontend->options['quantity'] );
-			lmscx_View::get( 'factory/cpt-grouper' , [ 'lessons' => $post_meta , 'library' => $options ] );
-
-		}
-
 		public function factory_Radio_Image() {
 
 			global $post;
@@ -245,6 +232,10 @@
 		        <input class="color-field widefat" type="text" name="<?php echo $this->id; ?>" id="<?php echo $this->id; ?>" value="<?php esc_attr_e($post_meta); ?>"/>
         	<?php
 		}
+
+		public function factory_single_react() {
+            LMSCX_View::get( 'single-react' , [ 'id' => 'edit-' . $this->id ] );
+        }
 
 
 		public function factory_Save_metabox( $post_id , $post ) {

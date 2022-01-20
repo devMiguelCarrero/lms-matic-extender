@@ -18,12 +18,21 @@
 			
 			global $pagenow;
 
-			$enqueue = new lmscx_EnqueueBuilder();
-			$enqueue->setType('style')
-					->setName( LMSCX_DOMAIN . '-admin-style' )
-					->setPath( LMSCX_PLUGIN_STYLE_URL . 'admin/style.css' )
-					->setVer( LMSCX_VERSION )
-					->enqueue();
+			if ( in_array( $pagenow, array( 'post-new.php', 'post.php' ) ) ) {
+
+				if( 'course' === get_post_type() ) {
+					
+					$enqueue = new lmscx_EnqueueBuilder();
+					$enqueue->setType('style')
+							->setName( LMSCX_DOMAIN . '-course-edit-style')
+							->setPath( LMSCX_PLUGIN_URL . 'dist/cpt/course/edit.css' )
+							->setVer(LMSCX_VERSION)
+							->setMedia('all')
+							->enqueue();
+
+				}
+
+			}
         	
 		}
 

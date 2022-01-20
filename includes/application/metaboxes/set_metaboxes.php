@@ -22,7 +22,7 @@
 								->setPriority('high')
 								->setFrontEnd()
 									->setType('cpt-selector')
-									->setFunction('factoryCPTGrouper')
+									->setFunction('factory_single_react')
 									->setOptions( array( 'cpt' => 'lesson' , 'quantity' => -1 ) )
 								->setSave()
 									->setFunction('factory_Save_metabox')

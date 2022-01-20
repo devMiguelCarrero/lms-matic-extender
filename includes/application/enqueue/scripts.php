@@ -132,16 +132,33 @@
 
 			if ( in_array( $pagenow, array( 'post-new.php', 'post.php' ) ) ) {
 
-				$enqueue = new lmscx_EnqueueBuilder();
-				$enqueue->setType('script')
-					->setName(LMSCX_DOMAIN . 'courses-control')
-					->setPath( LMSCX_PLUGIN_STYLE_URL . 'courses.js' )
-					->setDependencies(array('jquery'))
-					->setVer(LMSCX_VERSION)
-					->setInFooter(true)
-					->enqueue();
-
 				wp_enqueue_script( 'wp-color-picker');
+
+				if( 'course' === get_post_type() ) {
+
+					$enqueue = new lmscx_EnqueueBuilder();
+					$enqueue->setType('script')
+						->setName(LMSCX_DOMAIN . '-course-edit-control')
+						->setPath( LMSCX_PLUGIN_URL . 'dist/cpt/course/edit.js' )
+						->setDependencies(array('jquery','wp-element','wp-i18n'))
+						->setVer(LMSCX_VERSION)
+						->setInFooter(true)
+						->enqueue();
+					
+				}
+
+				if( 'lesson' === get_post_type() ) {
+
+					$enqueue = new lmscx_EnqueueBuilder();
+					$enqueue->setType('script')
+						->setName(LMSCX_DOMAIN . '-lesson-edit-control')
+						->setPath( LMSCX_PLUGIN_URL . 'dist/cpt/lesson/edit.js' )
+						->setDependencies(array('jquery','wp-element','wp-i18n'))
+						->setVer(LMSCX_VERSION)
+						->setInFooter(true)
+						->enqueue();
+					
+				}
 
 	        }
 
