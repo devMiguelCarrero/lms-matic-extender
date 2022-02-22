@@ -21,11 +21,10 @@
 								->setPosition('normal')
 								->setPriority('high')
 								->setFrontEnd()
-									->setType('cpt-selector')
+									->setType('array')
 									->setFunction('factory_single_react')
-									->setOptions( array( 'cpt' => 'lesson' , 'quantity' => -1 ) )
 								->setSave()
-									->setFunction('factory_Save_metabox')
+									->setFunction('factory_Save_JSON_metabox')
 								->build();
 																	
 	$country_streaming->init();

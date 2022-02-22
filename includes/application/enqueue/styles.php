@@ -25,7 +25,7 @@
 					$enqueue = new lmscx_EnqueueBuilder();
 					$enqueue->setType('style')
 							->setName( LMSCX_DOMAIN . '-course-edit-style')
-							->setPath( LMSCX_PLUGIN_URL . 'dist/cpt/course/edit.css' )
+							->setPath( LMSCX_PLUGIN_URL . 'build/index.css' )
 							->setVer(LMSCX_VERSION)
 							->setMedia('all')
 							->enqueue();

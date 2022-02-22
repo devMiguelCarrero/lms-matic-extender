@@ -18,6 +18,7 @@
 			$this->can_export          = true;
 			$this->exclude_from_search = false;
 		    $this->yarpp_support       = true;
+			$this->show_in_rest 	   = true;
 			$this->taxonomies 	        = array('post_tag');
 			$this->publicly_queryable  = true;
 			$this->capability_type     = 'page';

@@ -19,7 +19,7 @@ module.exports = (env, argv) => {
     },
     output: {
       filename: "[name].js",
-      path: path.resolve(__dirname, './dist')
+      path: path.resolve(__dirname, "./dist"),
     },
     optimization: {
       minimizer: [
@@ -83,6 +83,8 @@ module.exports = (env, argv) => {
       jquery: "jQuery",
       "@wordpress/i18n": ["wp", "i18n"],
       "@wordpress/element": ["wp", "element"],
+      "@wordpress/data": ["wp", "data"],
+      "@wordpress/scripts": ["wp", "scripts"],
     },
   };
   return config;

@@ -1,3 +1,4 @@
+import './style.scss';
 import { render } from '@wordpress/element';
 import App from './App';
 

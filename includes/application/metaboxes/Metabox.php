@@ -233,8 +233,11 @@
         	<?php
 		}
 
-		public function factory_single_react() {
-            LMSCX_View::get( 'single-react' , [ 'id' => 'edit-' . $this->id ] );
+		public function factory_single_react($post) {
+			$post_meta = get_post_meta( $post->ID, $this->id, true );
+			wp_nonce_field( LMSCX_DOMAIN , 'nonce-' . $this->id );
+
+            LMSCX_View::get( 'single-react' , [ 'id' => 'edit-' . $this->id, 'meta_id' => $this->id, 'value' => $post_meta ] );
         }
 
 
@@ -396,10 +399,23 @@
 
 		}
 
+		public function register_meta() {
+			register_post_meta(
+				$this->cpt,
+				$this->id,
+				[
+					'show_in_rest' => $this->showInRest,
+					'single'       => $this->single,
+					'type'         => $this->type,
+				]
+			);
+		}
+
 		public function init() {
 
 			add_action( 'add_meta_boxes', [ $this , 'create' ] );
         	add_action( 'save_post', [ $this , $this->save->function ], 1, 2 );
+			add_action( 'init', [ $this, 'register_meta' ]);
 
 		}
 

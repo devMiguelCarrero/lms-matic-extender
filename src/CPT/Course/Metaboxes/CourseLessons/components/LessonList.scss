@@ -1,0 +1,17 @@
+$mainColor: #3B2642;
+$textColor: #FAAE3B;
+
+.courselessons-lesson-list {
+	margin: 0;
+	padding: 10px;
+	border: solid 1px $mainColor;
+	min-height: 75px;
+	position: relative;
+	li {
+		color: $textColor;
+		border: solid 1px currentColor;
+		padding: 8px;
+		background-color: $mainColor;
+		margin-bottom: 0;
+	}
+}

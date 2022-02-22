@@ -1,0 +1,55 @@
+$mainColor: #3b2642;
+$textColor: #faae3b;
+
+.ourselessons-course-structure {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 25px;
+
+  & > li {
+    border: solid 1px $mainColor;
+    margin-bottom: 20px;
+    .chapter-title {
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $mainColor;
+    }
+
+    &.add-new {
+      border: none;
+      .add-new-chapter {
+        cursor: pointer;
+        width: 100%;
+        background-color: transparent;
+        color: $mainColor;
+        border: solid 1px $mainColor;
+        transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+        outline: none;
+        padding: 10px;
+        text-transform: uppercase;
+        font-weight: bold;
+        &:hover {
+          background-color: $mainColor;
+          color: $textColor;
+        }
+      }
+    }
+  }
+
+  &__chapter-lessons {
+    padding: 10px;
+    min-height: 40px;
+    position: relative;
+    display: block;
+
+    li {
+      color: $textColor;
+      border: solid 1px currentColor;
+      padding: 8px;
+      background-color: $mainColor;
+      margin-bottom: 0;
+    }
+  }
+}

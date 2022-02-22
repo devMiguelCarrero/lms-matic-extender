@@ -134,31 +134,22 @@
 
 				wp_enqueue_script( 'wp-color-picker');
 
-				if( 'course' === get_post_type() ) {
+				//if( 'course' === get_post_type() ) {
 
 					$enqueue = new lmscx_EnqueueBuilder();
 					$enqueue->setType('script')
 						->setName(LMSCX_DOMAIN . '-course-edit-control')
-						->setPath( LMSCX_PLUGIN_URL . 'dist/cpt/course/edit.js' )
-						->setDependencies(array('jquery','wp-element','wp-i18n'))
+						->setPath( LMSCX_PLUGIN_URL . 'build/index.js' )
+						->setDependencies(array('jquery','wp-element','wp-i18n','wp-data','wp-components'))
 						->setVer(LMSCX_VERSION)
 						->setInFooter(true)
 						->enqueue();
+					$enqueue->localizeScript(array( 
+						'lmscx_URLs' => lmscx_URLs::instance()->get_array(),
+						'lmscx_post_info' => lmscx_Post::instance()->get_posts_info()
+					));
 					
-				}
-
-				if( 'lesson' === get_post_type() ) {
-
-					$enqueue = new lmscx_EnqueueBuilder();
-					$enqueue->setType('script')
-						->setName(LMSCX_DOMAIN . '-lesson-edit-control')
-						->setPath( LMSCX_PLUGIN_URL . 'dist/cpt/lesson/edit.js' )
-						->setDependencies(array('jquery','wp-element','wp-i18n'))
-						->setVer(LMSCX_VERSION)
-						->setInFooter(true)
-						->enqueue();
-					
-				}
+				//}
 
 	        }
 
