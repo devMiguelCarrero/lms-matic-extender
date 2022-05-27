@@ -2616,7 +2616,6 @@ const LessonList = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.forwardRef
     try {
       const response = await axios__WEBPACK_IMPORTED_MODULE_4___default().get(`${_globalComponents_data_pluginData__WEBPACK_IMPORTED_MODULE_3__.URls.main_url}wp-json/wp/v2/lesson`);
       setLessons(response.data);
-      console.log(response.data);
       props.onLessonsLoad(response.data);
     } catch (error) {
       console.log(error);
@@ -2702,7 +2701,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-(0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.render)((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_App__WEBPACK_IMPORTED_MODULE_2__["default"], null), document.getElementById('edit-course-lessons'));
+if (document.getElementById("edit-course-lessons")) (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.render)((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_App__WEBPACK_IMPORTED_MODULE_2__["default"], null), document.getElementById("edit-course-lessons"));
 
 /***/ }),
 

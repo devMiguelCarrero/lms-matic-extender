@@ -47,7 +47,21 @@
 
 		//Test
 		$CPT = new lmscx_CPT_builder();
-		$test = $CPT->setID( 'test' )
+		$test = $CPT->setID( 'testimonial' )
+						->setLabel( esc_attr__( 'Testimonials' , LMSCX_DOMAIN ) )
+						->setDescription( esc_attr__( 'Testimonials made by users that used your services or bought your products' , LMSCX_DOMAIN ) )
+						->setTaxonomies( array() )
+						->setMenuIcon( 'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"  x="0px" y="0px" width="32" height="32" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" preserveAspectRatio="none" viewbox="0 0 32 32"><path d="M12.5,2C7.25,2,3,5.81,3,10.5c0,3.24,2.02,6.05,5,7.48V22l3.09-3.09C11.55,18.97,12.02,19,12.5,19c5.25,0,9.5-3.81,9.5-8.5  C22,5.81,17.75,2,12.5,2z M9.5,7C10.33,7,11,7.67,11,8.5S10.33,10,9.5,10S8,9.33,8,8.5S8.67,7,9.5,7z M12.5,15C8,15,8,11,8,11h9  C17,11,17,15,12.5,15z M15.5,10C14.67,10,14,9.33,14,8.5S14.67,7,15.5,7S17,7.67,17,8.5S16.33,10,15.5,10z"></path></svg>') )
+						->setLabels()
+							->setName( esc_attr__( 'Testimonials' , LMSCX_DOMAIN ) )
+							->setMenuName( esc_attr__( 'Testimonials' , LMSCX_DOMAIN ) )
+							->setPlural( esc_attr__( 'Testimonials' , LMSCX_DOMAIN ) )
+							->setSingular( esc_attr__( 'Testimonial' , LMSCX_DOMAIN ) );
+		$test->cpt->create();
+
+		//Test
+		$CPT = new lmscx_CPT_builder();
+		$testimonials = $CPT->setID( 'test' )
 						->setLabel( esc_attr__( 'Tests' , LMSCX_DOMAIN ) )
 						->setDescription( esc_attr__( 'Tests to be grouped inside of Courses CPT' , LMSCX_DOMAIN ) )
 						->setTaxonomies( array('post_tag','country_categories') )
@@ -57,7 +71,7 @@
 							->setMenuName( esc_attr__( 'Tests' , LMSCX_DOMAIN ) )
 							->setPlural( esc_attr__( 'Tests' , LMSCX_DOMAIN ) )
 							->setSingular( esc_attr__( 'Test' , LMSCX_DOMAIN ) );
-		$test->cpt->create();
+		$testimonials->cpt->create();
 		
 	}
 	

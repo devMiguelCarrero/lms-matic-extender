@@ -15,6 +15,34 @@
 	$course_duration->init();
 
 	$metaboxess = new lmscx_Metabox_builder();
+	$testimonial_witness = $metaboxess->setID('testimonial-witness')
+								->setTitle( esc_attr__( 'Testimonial Witness' , LMSCX_DOMAIN ) )
+								->setCPT('testimonial')
+								->setPosition('normal')
+								->setPriority('high')
+								->setFrontEnd()
+									->setType('text')
+									->setFunction('factory_Input')
+								->setSave()
+									->setFunction('factory_Save_metabox')
+								->build();						
+	$testimonial_witness->init();
+
+	$metaboxess = new lmscx_Metabox_builder();
+	$testimonial_witness_charge = $metaboxess->setID('testimonial-witness-charge')
+								->setTitle( esc_attr__( 'Testimonial Witness Charge' , LMSCX_DOMAIN ) )
+								->setCPT('testimonial')
+								->setPosition('normal')
+								->setPriority('high')
+								->setFrontEnd()
+									->setType('text')
+									->setFunction('factory_Input')
+								->setSave()
+									->setFunction('factory_Save_metabox')
+								->build();						
+	$testimonial_witness_charge->init();
+
+	$metaboxess = new lmscx_Metabox_builder();
 	$country_streaming = $metaboxess->setID('course-lessons')
 								->setTitle('Course Lessons')
 								->setCPT('course')
@@ -25,6 +53,7 @@
 									->setFunction('factory_single_react')
 								->setSave()
 									->setFunction('factory_Save_JSON_metabox')
-								->build();
-																	
+								->build();																	
 	$country_streaming->init();
+
+	

@@ -28,7 +28,6 @@ const LessonList = forwardRef((props, ref) => {
     try {
       const response = await Axios.get(`${URls.main_url}wp-json/wp/v2/lesson`);
       setLessons(response.data);
-      console.log(response.data);
       props.onLessonsLoad(response.data);
     } catch (error) {
       console.log(error);
