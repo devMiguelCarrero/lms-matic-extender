@@ -2,7 +2,7 @@
 
 	$metaboxess = new lmscx_Metabox_builder();
 	$course_duration = $metaboxess->setID('course-duration')
-								->setTitle( esc_attr__( 'Course Duration (hrs)' , LMSCX_DOMAIN ) )
+								->setTitle( esc_attr__( 'Course Duration (hrs)' , 'lms-matic-extender' ) )
 								->setCPT('course')
 								->setPosition('side')
 								->setPriority('high')
@@ -16,7 +16,7 @@
 
 	$metaboxess = new lmscx_Metabox_builder();
 	$testimonial_witness = $metaboxess->setID('testimonial-witness')
-								->setTitle( esc_attr__( 'Testimonial Witness' , LMSCX_DOMAIN ) )
+								->setTitle( esc_attr__( 'Testimonial Witness' , 'lms-matic-extender' ) )
 								->setCPT('testimonial')
 								->setPosition('normal')
 								->setPriority('high')
@@ -30,7 +30,7 @@
 
 	$metaboxess = new lmscx_Metabox_builder();
 	$testimonial_witness_charge = $metaboxess->setID('testimonial-witness-charge')
-								->setTitle( esc_attr__( 'Testimonial Witness Charge' , LMSCX_DOMAIN ) )
+								->setTitle( esc_attr__( 'Testimonial Witness Charge' , 'lms-matic-extender' ) )
 								->setCPT('testimonial')
 								->setPosition('normal')
 								->setPriority('high')
@@ -44,7 +44,7 @@
 
 	$metaboxess = new lmscx_Metabox_builder();
 	$country_streaming = $metaboxess->setID('course-lessons')
-								->setTitle('Course Lessons')
+								->setTitle( esc_attr__('Course Lessons', 'lms-matic-extender') )
 								->setCPT('course')
 								->setPosition('normal')
 								->setPriority('high')
@@ -56,4 +56,33 @@
 								->build();																	
 	$country_streaming->init();
 
+	//Tutoring short title
+	$metaboxess = new lmscx_Metabox_builder();
+	$country_streaming = $metaboxess->setID('tutoring-short-title')
+								->setTitle( esc_attr__( 'Short Title' , 'lms-matic-extender' ) )
+								->setCPT('tutoring')
+								->setPosition('side')
+								->setPriority('high')
+								->setFrontEnd()
+									->setType('string')
+									->setFunction('factory_Input')
+								->setSave()
+									->setFunction('factory_Save_metabox')
+								->build();																	
+	$country_streaming->init();
+
+	//Tutoring short title complement
+	$metaboxess = new lmscx_Metabox_builder();
+	$country_streaming = $metaboxess->setID('tutoring-short-title-complement')
+								->setTitle( esc_attr__( 'Short Title Complement' , 'lms-matic-extender' ) )
+								->setCPT('tutoring')
+								->setPosition('side')
+								->setPriority('high')
+								->setFrontEnd()
+									->setType('string')
+									->setFunction('factory_Input')
+								->setSave()
+									->setFunction('factory_Save_metabox')
+								->build();																	
+	$country_streaming->init();
 	
