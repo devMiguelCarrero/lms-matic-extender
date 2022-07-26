@@ -3,7 +3,7 @@
 Plugin Name: LMS Matic Extender
 Plugin URI: #
 Description: Plugin made for LMS Mathic Wordpress Theme supporting
-Version: 1.0
+Version: 1.0.1
 Author: slidmike
 Author URI: #
 License: OSLv3
@@ -29,7 +29,7 @@ if ( !function_exists( 'add_action' ) ) {
 }
 
 define( 'LMSCX_DOMAIN' , 'lms-matic-extender' );
-define( 'LMSCX_VERSION' , '1.0.0' );
+define( 'LMSCX_VERSION' , '1.0.1' );
 define( 'LMSCX_SITE_URL', get_site_url() . '/' );
 define( 'LMSCX_ACHIEVEMENTS_PATH' , plugin_dir_path( __FILE__ ) );
 define( 'LMSCX_PLUGIN_URL' , plugin_dir_url( __FILE__ ) );

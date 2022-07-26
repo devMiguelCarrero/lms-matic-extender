@@ -1,10 +1,10 @@
 {
   "name": "lms-matic-extender",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Wordpress plugin dedicated to support LMSmatic wordpress theme",
   "main": "index.js",
   "scripts": {
-    "build": "wp-scripts build",
+    "build": "wp-scripts build && gulp bundle",
     "format": "wp-scripts format && stylelint \"**/*.scss\" --fix",
     "lint:css": "wp-scripts lint-style",
     "lint:js": "wp-scripts lint-js",
@@ -29,6 +29,8 @@
     "@wordpress/scripts": "^21.0.1",
     "autoprefixer": "^10.4.2",
     "axios": "^0.24.0",
+    "gulp": "^4.0.2",
+    "gulp-zip": "^5.1.0",
     "jquery": "^3.6.0",
     "qs": "^6.10.3",
     "react-beautiful-dnd": "^13.1.0",
