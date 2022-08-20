@@ -45,7 +45,7 @@
 							->setSingular( esc_attr__( 'Course Material' , LMSCX_DOMAIN ) );
 		$material->cpt->create();
 
-		//Test
+		//Testimonial
 		$CPT = new lmscx_CPT_builder();
 		$test = $CPT->setID( 'testimonial' )
 						->setLabel( esc_attr__( 'Testimonials' , LMSCX_DOMAIN ) )
@@ -71,6 +71,22 @@
 							->setMenuName( esc_attr__( 'Tests' , LMSCX_DOMAIN ) )
 							->setPlural( esc_attr__( 'Tests' , LMSCX_DOMAIN ) )
 							->setSingular( esc_attr__( 'Test' , LMSCX_DOMAIN ) );
+		$testimonials->cpt->create();
+
+
+		//Test
+		$CPT = new lmscx_CPT_builder();
+		$testimonials = $CPT->setID( 'descubre' )
+						->setLabel( esc_attr__( 'DEScubre' , 'lms-matic-extender' ) )
+						->setDescription( esc_attr__( 'Set de tarjetas DEScubre' , 'lms-matic-extender' ) )
+						->setTaxonomies( array('post_tag','country_categories') )
+						->setSupports( array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'revisions', 'custom-fields') )
+						->setMenuIcon( 'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="enable-background:new 0 0 32 32" xml:space="preserve"><path d="M27 7H5C3 7 3 9 3 9v14c0 2 2 2 2 2h22c2 0 2-2 2-2V9c0-2-2-2-2-2zM7.5 19c-.83 0-1.5-.45-1.5-1s.67-1 1.5-1 1.5.45 1.5 1-.67 1-1.5 1zm0-4c-.83 0-1.5-.45-1.5-1s.67-1 1.5-1 1.5.45 1.5 1-.67 1-1.5 1zm2.08 5.99L9.5 21c-.24 0-.45-.17-.49-.42a.49.49 0 0 1 .41-.57C9.52 19.99 12 19.5 12 16s-2.48-3.99-2.58-4.01a.489.489 0 0 1-.41-.57c.05-.28.3-.46.57-.41.04 0 3.42.62 3.42 4.99s-3.38 4.99-3.42 4.99zM16 23h-1V9h1v14zm10-3h-8v-1h8v1zm0-3h-8v-1h8v1zm0-3h-8V9h8v5zm-1-1h-6v-3h6v3z"/></svg>') )
+						->setLabels()
+							->setName( esc_attr__( 'DEScubre' , 'lms-matic-extender' ) )
+							->setMenuName( esc_attr__( 'DEScubre' , 'lms-matic-extender' ) )
+							->setPlural( esc_attr__( 'DEScubre' , 'lms-matic-extender' ) )
+							->setSingular( esc_attr__( 'DEScubre' , 'lms-matic-extender' ) );
 		$testimonials->cpt->create();
 		
 	}

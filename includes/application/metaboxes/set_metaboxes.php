@@ -55,4 +55,18 @@
 									->setFunction('factory_Save_JSON_metabox')
 								->build();																	
 	$country_streaming->init();
+
+	$metaboxess = new lmscx_Metabox_builder();
+	$country_streaming = $metaboxess->setID('post-reviews')
+								->setTitle( esc_attr__('Post Reviews', 'lms-matic-extender') )
+								->setCPT('descubre')
+								->setPosition('normal')
+								->setPriority('high')
+								->setFrontEnd()
+									->setType('array')
+									->setFunction('factory_single_react')
+								->setSave()
+									->setFunction('factory_Save_JSON_metabox')
+								->build();																	
+	$country_streaming->init();
 	

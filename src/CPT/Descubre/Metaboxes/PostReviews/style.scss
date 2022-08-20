@@ -1,0 +1,14 @@
+.lmscb-post-reviews {
+  border: solid 1px #000;
+  padding: 15px;
+
+  &__list {
+    margin: 0;
+    padding: 0;
+
+    blockquote {
+      padding: 10px;
+      border: solid 1px var(--site-third-color);
+    }
+  }
+}
