@@ -3,7 +3,7 @@
 class lmscx_Enqueue_Styles
 {
 
-	public function init()
+	public static function init()
 	{
 
 		$enqueue = new lmscx_EnqueueBuilder();
@@ -15,7 +15,7 @@ class lmscx_Enqueue_Styles
 			->enqueue();
 	}
 
-	public function init_admin()
+	public static function init_admin()
 	{
 
 		$enqueue = new lmscx_EnqueueBuilder();

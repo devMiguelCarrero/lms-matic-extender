@@ -2,7 +2,7 @@
 
 	class lmscx_Enqueue_Scripts {
 
-		public function init() {
+		public static function init() {
 
 			/*global $eztURLS;
 			global $post;
@@ -126,7 +126,7 @@
 
 		}
 
-		public function init_admin() {
+		public static function init_admin() {
 
 			global $pagenow;
 
