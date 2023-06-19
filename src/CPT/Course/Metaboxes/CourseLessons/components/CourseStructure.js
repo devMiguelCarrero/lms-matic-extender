@@ -1,22 +1,23 @@
-import "./CourseStructure.scss";
+import './CourseStructure.scss';
 import {
   useState,
   forwardRef,
   useEffect,
   useImperativeHandle,
-} from "@wordpress/element";
+} from '@wordpress/element';
 import {
   textDomain,
   URls,
   PostInfo,
-} from "../../../../../globalComponents/data/pluginData";
-import { __ } from "@wordpress/i18n";
-import { Droppable, Draggable } from "react-beautiful-dnd";
-import Axios from "axios";
-import removeItems from "remove-array-items";
+} from '../../../../../globalComponents/data/pluginData';
+import { __ } from '@wordpress/i18n';
+import { Droppable, Draggable } from 'react-beautiful-dnd';
+import Axios from 'axios';
+import removeItems from 'remove-array-items';
 
 const CourseStructure = forwardRef((props, ref) => {
-  const [chapters, setChapters] = useState(null);
+  const [loadedChapters, setLoadedChapters] = useState(null);
+  const [chapters, setChapters] = useState([]);
   const LessonMeta = props.lessonMeta;
 
   const reorder = (list, startIndex, endIndex) => {
@@ -29,41 +30,44 @@ const CourseStructure = forwardRef((props, ref) => {
 
   useEffect(async () => {
     const params = new URLSearchParams();
-    params.append("action", "lmscx_get_course_lessons");
-    params.append("course", PostInfo.current_post);
+    params.append('action', 'lmscx_get_course_lessons');
+    params.append('course', PostInfo.current_post);
 
     try {
       const response = await Axios.post(URls.ajax_url, params);
+      console.log(response.data);
       props.onCourseLoad(response.data);
-      if (LessonMeta && response.data.length > 0) {
-        mergeChaptersMeta(response.data);
-      }
       if (response.data.length === 0) {
-        setChapters([{
-          id: "chapter-1",
-          lessons: [],
-          title: __("Chapter 1", textDomain),
-        }]);
-        props.onCourseUpdate([]);
+        setLoadedChapters([
+          {
+            id: 'chapter-1',
+            lessons: [],
+            title: __('Chapter 1', textDomain),
+          },
+        ]);
+      } else {
+        setLoadedChapters(response.data);
       }
+      props.onCourseUpdate([]);
     } catch (error) {
       console.log(error);
     }
-  }, [setChapters, LessonMeta]);
+  }, [setChapters]);
 
-  const mergeChaptersMeta = (meta) => {
-    setChapters((prevChapters) => {
-      const updatedChapters = meta.map((chapter) => {
-        const updatedLessons = chapter["lessons"].map((lesson) => {
-          return LessonMeta.find( lessonM => lessonM.id === lesson.id );
+  useEffect(() => {
+    if (LessonMeta && loadedChapters) {
+      setChapters((prevChapters) => {
+        const updatedChapters = loadedChapters.map((chapter) => {
+          const updatedLessons = chapter['lessons'].map((lesson) => {
+            return LessonMeta.find((lessonM) => lessonM.id === lesson.id);
+          });
+          chapter.lessons = updatedLessons;
+          return chapter;
         });
-        chapter.lessons = updatedLessons;
-        return chapter;
+        return updatedChapters;
       });
-      props.onCourseUpdate(updatedChapters);
-      return updatedChapters;
-    });
-  };
+    }
+  }, [LessonMeta, loadedChapters]);
 
   const chapterAddHandler = () => {
     setChapters((prevChapters) => {
@@ -73,6 +77,15 @@ const CourseStructure = forwardRef((props, ref) => {
         lessons: [],
         title: `Chapter ${chapters.length + 1}`,
       });
+      props.onCourseUpdate(updatedChapters);
+      return updatedChapters;
+    });
+  };
+
+  const chapterRemoveHandler = (chapterIndex) => {
+    setChapters((prevChapters) => {
+      const updatedChapters = [...prevChapters];
+      removeItems(updatedChapters, chapterIndex, 1);
       props.onCourseUpdate(updatedChapters);
       return updatedChapters;
     });
@@ -94,7 +107,7 @@ const CourseStructure = forwardRef((props, ref) => {
         const chapterIndex = chapters.findIndex(
           (chapter) => chapter.id === source.droppableId
         );
-        return chapters[chapterIndex]["lessons"][source.index];
+        return chapters[chapterIndex]['lessons'][source.index];
       },
       orderCourseHandler({ source, destination }) {
         const chapterIndex = chapters.findIndex(
@@ -102,8 +115,8 @@ const CourseStructure = forwardRef((props, ref) => {
         );
         setChapters((prevChapters) => {
           const updatedChapters = [...prevChapters];
-          updatedChapters[chapterIndex]["lessons"] = reorder(
-            prevChapters[chapterIndex]["lessons"],
+          updatedChapters[chapterIndex]['lessons'] = reorder(
+            prevChapters[chapterIndex]['lessons'],
             source.index,
             destination.index
           );
@@ -112,13 +125,13 @@ const CourseStructure = forwardRef((props, ref) => {
         });
       },
       addCourseHandler(destination, lesson) {
-        if (destination.droppableId.startsWith("chapter-")) {
+        if (destination.droppableId.startsWith('chapter-')) {
           const chapterIndex = chapters.findIndex(
             (chapter) => chapter.id === destination.droppableId
           );
           setChapters((prevChapters) => {
             const updatedChapters = [...prevChapters];
-            updatedChapters[chapterIndex]["lessons"].splice(
+            updatedChapters[chapterIndex]['lessons'].splice(
               destination.index,
               0,
               lesson
@@ -135,7 +148,7 @@ const CourseStructure = forwardRef((props, ref) => {
         setChapters((prevChapters) => {
           const updatedChapters = [...prevChapters];
           removeItems(
-            updatedChapters[chapterIndex]["lessons"],
+            updatedChapters[chapterIndex]['lessons'],
             source.index,
             1
           );
@@ -150,12 +163,20 @@ const CourseStructure = forwardRef((props, ref) => {
   return (
     <>
       {chapters && LessonMeta ? (
-        <ul className="ourselessons-course-structure">
+        <ul className="courselessons-course-structure">
           {chapters.map((chapter, index) => {
             return (
               <li>
-                <div className="ourselessons-course-structure__chapter">
+                <div className="courselessons-course-structure__chapter">
                   <div className="chapter-title">
+                    <button
+                      onClick={() => {
+                        chapterRemoveHandler(index);
+                      }}
+                      className="courselessons-course-structure__chapter-delete"
+                    >
+                      X
+                    </button>
                     <input
                       type="text"
                       value={chapter.title}
@@ -169,7 +190,7 @@ const CourseStructure = forwardRef((props, ref) => {
                       <ul
                         {...droppableProvided.droppableProps}
                         ref={droppableProvided.innerRef}
-                        className="ourselessons-course-structure__chapter-lessons"
+                        className="courselessons-course-structure__chapter-lessons"
                       >
                         {chapter.lessons.map((lesson, index) => {
                           return (
@@ -204,7 +225,7 @@ const CourseStructure = forwardRef((props, ref) => {
               className="add-new-chapter"
               onClick={chapterAddHandler}
             >
-              {__("Add new Chapter", textDomain)}
+              {__('Add new Chapter', textDomain)}
             </button>
           </li>
         </ul>

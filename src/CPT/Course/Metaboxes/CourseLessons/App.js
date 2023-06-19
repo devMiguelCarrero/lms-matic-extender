@@ -1,12 +1,12 @@
-import Col from "../../../../globalComponents/UI/Col";
-import Row from "../../../../globalComponents/UI/Row";
-import { textDomain } from "../../../../globalComponents/data/pluginData";
-import { __ } from "@wordpress/i18n";
-import ComponentContainer from "./components/ComponentContainer";
-import LessonList from "./components/LessonList";
-import CourseStructure from "./components/CourseStructure";
-import { DragDropContext } from "react-beautiful-dnd";
-import { useState, useRef } from "@wordpress/element";
+import Col from '../../../../globalComponents/UI/Col';
+import Row from '../../../../globalComponents/UI/Row';
+import { textDomain } from '../../../../globalComponents/data/pluginData';
+import { __ } from '@wordpress/i18n';
+import ComponentContainer from './components/ComponentContainer';
+import LessonList from './components/LessonList';
+import CourseStructure from './components/CourseStructure';
+import { DragDropContext } from 'react-beautiful-dnd';
+import { useState, useRef } from '@wordpress/element';
 
 const App = () => {
   const [meta, setMeta] = useState("");

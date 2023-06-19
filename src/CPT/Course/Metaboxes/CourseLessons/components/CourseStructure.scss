@@ -1,7 +1,7 @@
 $mainColor: #3b2642;
 $textColor: #faae3b;
 
-.ourselessons-course-structure {
+.courselessons-course-structure {
   margin: 0;
   padding: 0;
   margin-bottom: 25px;
@@ -10,6 +10,7 @@ $textColor: #faae3b;
     border: solid 1px $mainColor;
     margin-bottom: 20px;
     .chapter-title {
+      position: relative;
       padding: 10px;
       display: flex;
       align-items: center;
@@ -51,5 +52,12 @@ $textColor: #faae3b;
       background-color: $mainColor;
       margin-bottom: 0;
     }
+  }
+
+  &__chapter-delete {
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 10px;
   }
 }

@@ -8,8 +8,8 @@
     "format": "wp-scripts format && stylelint \"**/*.scss\" --fix",
     "lint:css": "wp-scripts lint-style",
     "lint:js": "wp-scripts lint-js",
-    "start": "wp-scripts start",
-    "start:custom": "wp-scripts start ./src/editor.js ./src/script.js",
+    "start": "wp-scripts start ./src/editor.js ./src/index.js",
+    "start:custom": "wp-scripts start ./src/editor.js ./src/index.js",
     "packages-update": "wp-scripts packages-update",
     "prepare": "husky install"
   },
@@ -33,7 +33,7 @@
     "gulp-zip": "^5.1.0",
     "jquery": "^3.6.0",
     "qs": "^6.10.3",
-    "react-beautiful-dnd": "^13.1.0",
+    "react-beautiful-dnd": "^13.1.1",
     "remove-array-items": "^3.0.0"
   },
   "devDependencies": {
