@@ -74,7 +74,7 @@
 		$testimonials->cpt->create();
 
 
-		//Test
+		//Descubre
 		$CPT = new lmscx_CPT_builder();
 		$testimonials = $CPT->setID( 'descubre' )
 						->setLabel( esc_attr__( 'DEScubre' , 'lms-matic-extender' ) )
@@ -87,6 +87,21 @@
 							->setMenuName( esc_attr__( 'DEScubre' , 'lms-matic-extender' ) )
 							->setPlural( esc_attr__( 'DEScubre' , 'lms-matic-extender' ) )
 							->setSingular( esc_attr__( 'DEScubre' , 'lms-matic-extender' ) );
+		$testimonials->cpt->create();
+
+		//Encuentros
+		$CPT = new lmscx_CPT_builder();
+		$testimonials = $CPT->setID( 'encuentro' )
+						->setLabel( esc_attr__( 'Encuentro' , 'lms-matic-extender' ) )
+						->setDescription( esc_attr__( 'Encuentros online' , 'lms-matic-extender' ) )
+						->setTaxonomies( array('post_tag','country_categories') )
+						->setSupports( array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'revisions', 'custom-fields') )
+						->setMenuIcon( 'data:image/svg+xml;base64,' . base64_encode('<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"  x="0px" y="0px" width="32" height="32" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve" preserveAspectRatio="none" viewbox="0 0 32 32"><path d="M18.151,18.071C17.773,18.028,17.39,18,17,18c-5.523,0-10,4.478-10,10s4.477,10,10,10c5.523,0,10-4.478,10-10    c0-1.046-0.162-2.055-0.46-3.002c-0.014,0-0.026,0.002-0.04,0.002C22.343,25,18.889,22.014,18.151,18.071z M35,16.5    c0-4.694-3.806-8.5-8.5-8.5S18,11.806,18,16.5c0,0.538,0.056,1.062,0.151,1.571c3.965,0.455,7.225,3.225,8.389,6.927    C31.216,24.977,35,21.181,35,16.5z M12.5,13c3.038,0,5.5-2.463,5.5-5.5S15.538,2,12.5,2S7,4.463,7,7.5S9.462,13,12.5,13z"></path></svg>') )
+						->setLabels()
+							->setName( esc_attr__( 'Encuentros' , 'lms-matic-extender' ) )
+							->setMenuName( esc_attr__( 'Encuentros' , 'lms-matic-extender' ) )
+							->setPlural( esc_attr__( 'Encuentros' , 'lms-matic-extender' ) )
+							->setSingular( esc_attr__( 'Encuentro' , 'lms-matic-extender' ) );
 		$testimonials->cpt->create();
 		
 	}

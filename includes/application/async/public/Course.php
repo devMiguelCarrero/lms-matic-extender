@@ -10,7 +10,7 @@ class lmscx_Async_Course
 
   public function check_course_validation() {
     $course = esc_attr($_POST['course']);
-    echo json_encode(lmscx_CPTHelper::instance()->getCPTPostMeta( $course, 'course-lessons', [] ));
+    echo json_encode( lmscx_Course_Helper::instance()->getCourseData($course) );
     exit();
   }
 

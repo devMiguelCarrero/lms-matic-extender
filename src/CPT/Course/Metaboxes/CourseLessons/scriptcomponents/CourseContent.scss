@@ -1,0 +1,11 @@
+@import '../style.scss';
+
+.course-content {
+  width: 75%;
+  padding: 2rem;
+
+  @media (max-width: 991px) {
+    width: 100%;
+    display: block;
+  }
+}

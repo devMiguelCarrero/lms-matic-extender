@@ -83,3 +83,18 @@
 									->setFunction('factory_Save_JSON_metabox')
 								->build();																	
 	$country_streaming->init();
+
+	$metaboxess = new lmscx_Metabox_builder();
+	$country_streaming = $metaboxess->setID('lms-course-encounters')
+								->setTitle( esc_attr__('Curso', 'lms-matic-extender') )
+								->setCPT('encuentro')
+								->setPosition('side')
+								->setPriority('high')
+								->setFrontEnd()
+									->setType('select')
+									->setFunction('factory_Select')
+									->setOptions( array( 'cpt' => 'course' , 'quantity' => -1 ) )
+								->setSave()
+									->setFunction('factory_Save_metabox')
+								->build();																	
+	$country_streaming->init();

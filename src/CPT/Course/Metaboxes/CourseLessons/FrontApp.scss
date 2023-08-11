@@ -1,0 +1,13 @@
+@import './style.scss';
+
+.course-structure {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  min-height: 100vh;
+
+  @media (max-width: 991px) {
+    flex-direction: column-reverse;
+  }
+}
