@@ -1,1 +1,2 @@
-import "./CourseLessons/script";
+import './CourseLessons/script';
+import './CourseStudents/script';

@@ -8,7 +8,7 @@
 					${$key} = $value;
 				}
 			}
-			require_once LMSCX_ACHIEVEMENTS_PATH_VIEW . $view. '.php';
+			require LMSCX_ACHIEVEMENTS_PATH_VIEW . $view. '.php';
 		}
 
 		public static function render($view,$data=null) {

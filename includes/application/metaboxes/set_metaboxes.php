@@ -98,3 +98,17 @@
 									->setFunction('factory_Save_metabox')
 								->build();																	
 	$country_streaming->init();
+
+	$metaboxess = new lmscx_Metabox_builder();
+	$scheduled_users = $metaboxess->setID('course-students')
+		->setTitle( esc_attr__( 'Course Students' , 'lms-matic-extender' ) )
+		->setCPT('course')
+		->setPosition('normal')
+		->setPriority('high')
+		->setFrontEnd()
+			->setType('array')
+			->setFunction('factory_single_react')
+		->setSave()
+			->setFunction('factory_Scheduled_Students_metabox')
+		->build();
+		$scheduled_users->init();

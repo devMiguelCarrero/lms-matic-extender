@@ -1,1 +1,2 @@
-import "./CourseLessons";
+import './CourseLessons';
+import './CourseStudents';

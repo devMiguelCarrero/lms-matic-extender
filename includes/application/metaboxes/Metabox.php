@@ -338,11 +338,14 @@ class lmscx_Metabox
 		}
 
 		if (!isset($_POST[$this->id])) {
-			delete_post_meta($post_id, $this->id);
 			return $post_id;
 		}
 
 		$events_meta[$this->id] = json_decode(str_replace("\\", "", urldecode($_POST[$this->id])));
+
+		if(count($events_meta[$this->id]) <= 0) {
+			return $post_id;
+		}
 
 		foreach ($events_meta as $key => $value) :
 
@@ -354,9 +357,6 @@ class lmscx_Metabox
 				update_post_meta($post_id, $key, $value);
 			} else {
 				add_post_meta($post_id, $key, $value);
-			}
-			if (!$value || $value == null) {
-				delete_post_meta($post_id, $key);
 			}
 		endforeach;
 	}
@@ -380,6 +380,59 @@ class lmscx_Metabox
 		$events_meta[$this->id] = json_decode(str_replace("\\", "", urldecode($_POST[$this->id])));
 
 		$this->generateItemCache($this->id, $post_id, json_encode($events_meta[$this->id]));
+	}
+
+	public function factory_Scheduled_Students_metabox($post_id, $post)
+	{
+
+		$GLOBALS["post"] =  $post_id;
+
+		if (!current_user_can('edit_post', $post_id)) {
+			return $post_id;
+		}
+
+		if (!wp_verify_nonce($_POST['nonce-' . $this->id], LMSCX_DOMAIN)) {
+			return $post_id;
+		}
+
+		if (!isset($_POST[$this->id])) {
+			return $post_id;
+		}
+
+		$oldScheduled = lmscx_CPTHelper::instance()->getCPTPostMeta($post_id, 'course-students', []);
+		foreach ($oldScheduled as $student) {
+			$scheduledClasses = lmsx_USER_Model::instance()->getUserMeta($student, 'user-courses', []);
+			$scheduledClasses = array_filter($scheduledClasses, function ($element) {
+				return $element !== $GLOBALS["post"];
+			});
+			update_user_meta($student, 'user-courses', array_unique($scheduledClasses));
+		}
+
+		$newScheduled = json_decode(str_replace("\\", "", urldecode($_POST[$this->id])));
+
+		foreach ($newScheduled as $student) {
+			$scheduledClasses = lmsx_USER_Model::instance()->getUserMeta($student, 'user-courses', []);
+			$scheduledClasses[] = $post_id;
+			update_user_meta($student, 'user-courses', array_unique($scheduledClasses));
+		}
+
+		$events_meta[$this->id] = $newScheduled;
+
+		foreach ($events_meta as $key => $value) :
+
+			if ('revision' === $post->post_type) {
+				return;
+			}
+			if (get_post_meta($post_id, $key, false)) {
+
+				update_post_meta($post_id, $key, $value);
+			} else {
+				add_post_meta($post_id, $key, $value);
+			}
+			if (!$value || $value == null) {
+				//delete_post_meta($post_id, $key);
+			}
+		endforeach;
 	}
 
 	public function generateItemCache($id, $post_id, $json)

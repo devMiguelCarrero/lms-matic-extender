@@ -17,6 +17,10 @@ class lmscx_Course_Helper
     return $courseData;
   }
 
+  public function checkCourseValidation($user, $courseID) {
+    
+  }
+
   public static function instance()
   {
     return new lmscx_Course_Helper;

@@ -1,0 +1,49 @@
+.user-list-userform {
+  display: block;
+  position: relative;
+  padding: 15px;
+  border: solid 1px var(--main-color);
+  margin-bottom: 1rem;
+
+  &__title {
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+
+  &__fromgroup {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    input {
+      border-radius: 0;
+      flex: 1;
+      border: solid 1px var(--main-color);
+      color: var(--main-color);
+      margin-right: -1px;
+    }
+    button {
+      flex: 0;
+      min-width: 6rem;
+    }
+  }
+}
+
+.user-list-container {
+	&__log {
+		font-weight: bold;
+		color: var(--main-color);
+	}
+
+	&__list {
+		margin: 0;
+		padding: 0;
+
+		li {
+			color: var(--secondary-color);
+			border: solid 1px currentColor;
+			padding: 8px;
+			background-color: var(--main-color);
+			margin-bottom: 0;
+		}
+	}
+}

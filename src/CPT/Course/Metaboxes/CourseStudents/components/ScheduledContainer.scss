@@ -1,0 +1,39 @@
+.scheduled-users-container {
+  &__list {
+    margin: 0;
+    border: solid 1px var(--main-color);
+    padding: 10px;
+    min-height: 2rem;
+    li {
+      color: var(--secondary-color);
+      border: solid 1px currentColor;
+      padding: 8px;
+      background-color: var(--main-color);
+      margin-bottom: 0;
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+
+      .delete-user-button {
+        visibility: hidden;
+        color: var(--secondary-color);
+        background-color: transparent;
+        border: solid 1px var(--secondary-color);
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out;
+        &:hover {
+          background-color: var(--secondary-color);
+          color: var(--main-color);
+        }
+      }
+
+      &:hover {
+        .delete-user-button {
+          visibility: visible;
+        }
+      }
+    }
+  }
+}
