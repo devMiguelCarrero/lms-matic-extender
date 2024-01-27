@@ -153,6 +153,11 @@
 			return $this;
 		}
 
+		public function setPubliclyQueryable($publicly_queryable) {
+			$this->cpt->publicly_queryable = $publicly_queryable;
+			return $this;
+		}
+
 		public function setLabels() {
 			return new lmscx_CPTLabels_Builder($this->cpt);
 		}
