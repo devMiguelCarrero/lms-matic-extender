@@ -39,6 +39,7 @@ export default class CourseConstructor {
             chapter.lessons = chapter.lessons.map((lesson) => {
               lesson.loaded = false;
               lesson.selected = false;
+              lesson.type = 'lesson';
               return lesson;
             });
 
@@ -49,6 +50,10 @@ export default class CourseConstructor {
 
     // Return the updated object to enable method chaining
     return this;
+  }
+
+  setEncounters() {
+    
   }
 
   // Function to set the 'selectedLesson' property to the first lesson ID

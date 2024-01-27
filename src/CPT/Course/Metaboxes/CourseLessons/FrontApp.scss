@@ -6,6 +6,7 @@
   flex-direction: row;
   justify-content: flex-start;
   min-height: 100vh;
+  border-bottom: solid 2px $mainColor;
 
   @media (max-width: 991px) {
     flex-direction: column-reverse;

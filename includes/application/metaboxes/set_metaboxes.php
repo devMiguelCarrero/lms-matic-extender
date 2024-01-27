@@ -85,21 +85,6 @@
 	$country_streaming->init();
 
 	$metaboxess = new lmscx_Metabox_builder();
-	$country_streaming = $metaboxess->setID('lms-course-encounters')
-								->setTitle( esc_attr__('Curso', 'lms-matic-extender') )
-								->setCPT('encuentro')
-								->setPosition('side')
-								->setPriority('high')
-								->setFrontEnd()
-									->setType('select')
-									->setFunction('factory_Select')
-									->setOptions( array( 'cpt' => 'course' , 'quantity' => -1 ) )
-								->setSave()
-									->setFunction('factory_Save_metabox')
-								->build();																	
-	$country_streaming->init();
-
-	$metaboxess = new lmscx_Metabox_builder();
 	$scheduled_users = $metaboxess->setID('course-students')
 		->setTitle( esc_attr__( 'Course Students' , 'lms-matic-extender' ) )
 		->setCPT('course')
@@ -111,4 +96,6 @@
 		->setSave()
 			->setFunction('factory_Scheduled_Students_metabox')
 		->build();
-		$scheduled_users->init();
+	$scheduled_users->init();
+
+	require_once LMSCX_ACHIEVEMENTS_PATH_METABOXES . 'Encuentro.php';

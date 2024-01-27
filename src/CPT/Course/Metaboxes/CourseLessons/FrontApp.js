@@ -1,6 +1,7 @@
 import { useEffect, useState } from '@wordpress/element';
 import LogoLoader from '../../../../globalComponents/LogoLoader/LogoLoader';
 import Axios from 'axios';
+import he from 'he';
 
 import { useCourse } from './shared/hooks/course-hook';
 import { CourseContext } from './shared/context/course-context';
@@ -18,6 +19,7 @@ import CourseConstructor from './shared/Class/Course';
 
 const FrontApp = () => {
   const { course, setCourse, selectedLesson, setSelectedLesson } = useCourse();
+  const [courseContent, setCourseContent] = useState(null);
 
   useEffect(async () => {
     const params = new URLSearchParams();
@@ -26,31 +28,51 @@ const FrontApp = () => {
 
     try {
       const response = await Axios.post(URls.ajax_url, params);
-      const courseData = new CourseConstructor()
-        .formatCourse(response.data)
-        .setFirstLesson();
+      const courseResponse = response.data;
+      setCourseContent(courseResponse);
 
-      setSelectedLesson(courseData.getLesson());
-      setCourse(courseData.get());
+      if (courseResponse.valid) {
+        const courseData = new CourseConstructor()
+          .formatCourse(response.data.content)
+          .setFirstLesson();
+        setSelectedLesson(courseData.getLesson());
+        setCourse(courseData.get());
+      }
     } catch (error) {
       console.log(error);
     }
   }, []);
 
   return (
-    <CourseContext.Provider
-      value={{ course, setCourse, selectedLesson, setSelectedLesson }}
-    >
-      <div className="border-section">
-        {course.length <= 0 && <LogoLoader />}
-        {course.length > 0 && (
-          <div className="course-structure">
-            <LessonList />
-            <CourseContent />
-          </div>
-        )}
-      </div>
-    </CourseContext.Provider>
+    <>
+      {courseContent && (
+        <>
+          {courseContent.valid && (
+            <CourseContext.Provider
+              value={{ course, setCourse, selectedLesson, setSelectedLesson }}
+            >
+              <div className="border-section">
+                {course.length <= 0 && <LogoLoader />}
+                {course.length > 0 && (
+                  <div className="course-structure">
+                    <LessonList />
+                    <CourseContent />
+                  </div>
+                )}
+              </div>
+            </CourseContext.Provider>
+          )}
+          {!courseContent.valid && (
+            <div
+              dangerouslySetInnerHTML={{
+                __html: he.decode(courseContent.content),
+              }}
+            />
+          )}
+        </>
+      )}
+      {!courseContent && <LogoLoader />}
+    </>
   );
 };
 export default FrontApp;

@@ -35,7 +35,6 @@ const CourseStructure = forwardRef((props, ref) => {
 
     try {
       const response = await Axios.post(URls.ajax_url, params);
-      console.log(response.data);
       props.onCourseLoad(response.data);
       if (response.data.length === 0) {
         setLoadedChapters([
@@ -61,13 +60,17 @@ const CourseStructure = forwardRef((props, ref) => {
           const updatedLessons = chapter['lessons'].map((lesson) => {
             return LessonMeta.find((lessonM) => lessonM.id === lesson.id);
           });
-          chapter.lessons = updatedLessons;
+          chapter.lessons = updatedLessons.filter(
+            (lesson) => lesson !== undefined
+          );
           return chapter;
         });
         return updatedChapters;
       });
     }
   }, [LessonMeta, loadedChapters]);
+
+  console.log(chapters);
 
   const chapterAddHandler = () => {
     setChapters((prevChapters) => {
